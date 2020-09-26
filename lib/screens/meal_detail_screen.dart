@@ -1,10 +1,18 @@
 import "package:flutter/material.dart";
 
 class MealDetail extends StatelessWidget {
+  static const routeName = "/meal-detail";
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("Meal"),
+    final mealId = ModalRoute.of(context).settings.arguments as String;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Meal"),
+      ),
+      body: Container(
+        child: Text("Meal"),
+      ),
     );
   }
 }

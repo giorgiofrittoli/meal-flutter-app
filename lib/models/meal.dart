@@ -33,4 +33,26 @@ class Meal {
       this.isLactoseFree = false,
       this.isVegan = false,
       this.isVegetarian = false});
+
+  get complexityText {
+    switch (complexity) {
+      case Complexity.Simple:
+        return "Simple";
+      case Complexity.Hard:
+        return "Hard";
+      case Complexity.Challenging:
+        return "Challenging";
+    }
+  }
+
+  get affordabilityText {
+    switch (affordability) {
+      case Affordability.Affordable:
+        return "Affordable";
+      case Affordability.Pricey:
+        return "Pricey";
+      case Affordability.Luxurious:
+        return "Challenging";
+    }
+  }
 }
