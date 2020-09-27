@@ -1,32 +1,29 @@
 import "package:flutter/material.dart";
 
+import "../models/filters.dart";
 import '../main_drawer.dart';
 
 class FiltersScreen extends StatefulWidget {
   static const routeName = "filters-screen";
 
+  final Function setFilters;
+  final Map<Filter, bool> _filters;
+
+  FiltersScreen(this._filters, this.setFilters);
+
   @override
   _FiltersScreenState createState() => _FiltersScreenState();
 }
 
-enum Filter { LACTOSE_FREE, GLUTEN_FREE, VEGETARIAN, VEGAN }
-
 class _FiltersScreenState extends State<FiltersScreen> {
-  var _filters = {
-    Filter.GLUTEN_FREE: false,
-    Filter.LACTOSE_FREE: false,
-    Filter.VEGETARIAN: false,
-    Filter.VEGAN: false
-  };
-
   Widget _buildSwitchListTile(String title, String subTitle, Filter type) {
     return SwitchListTile(
       title: Text(title),
       subtitle: Text(subTitle),
-      value: _filters[type],
+      value: widget._filters[type],
       onChanged: (newValue) {
         setState(() {
-          _filters[type] = newValue;
+          widget._filters[type] = newValue;
         });
       },
     );
@@ -37,6 +34,12 @@ class _FiltersScreenState extends State<FiltersScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Filters"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.save),
+            onPressed: () => widget.setFilters(widget._filters),
+          )
+        ],
       ),
       drawer: MainDrawer(),
       body: Column(

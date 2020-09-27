@@ -52,7 +52,7 @@ class Meal {
       case Affordability.Pricey:
         return "Pricey";
       case Affordability.Luxurious:
-        return "Challenging";
+        return "Luxurious";
     }
   }
 }
